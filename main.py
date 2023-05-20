@@ -1,5 +1,5 @@
 import sys
-from local.Lockpass import lockpass
+from local.lockpass import lockpass
 class start():
     def error(): #type: ignore
         pass
