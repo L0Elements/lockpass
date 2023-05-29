@@ -1,35 +1,24 @@
-import sys
-from local.Lockpass import lockpass
+# local library
+from local.Lockpass import *
+# kivy
+import kivy
+
+kivy.require('2.2.0')
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
 
 
-class start():
-    def error():  # type: ignore
-        pass
-
-    def SystemControl():  # type: ignore
-        return 0
-
-    def argvcheck():  # type: ignore
-        try:
-            command = sys.argv[1]
-        except IndexError:
-            lockpass.help()
-            return 2  # no arguments
-        if command == 'newbook':
-            passwd = str(input("Write a good password for the book (DON'T FORGET IT) > "))
-            descr = str(input("Add a description (facoltative) > "))
-            if descr == "":
-                descr = "None"
-            if not lockpass.newbook(sys.argv[2], descr, passwd):  # type: ignore
-                print('''Book created succesfully\n''' + "Name: " + sys.argv[
-                    2] + "\nDescription: " + descr + "\nPassword: " + passwd)
-            else:
-                print(
-                    "an error has occurred: Try to relaunch the program. If the problem persists, contact the support")
-        return 0
+class root(BoxLayout):
+    pass
 
 
-if not start.SystemControl():
-    start.Argvcheck()
-else:
-    start.error()
+class MyApp(App):
+    title = "Lockpass 0.0.1"
+
+    #    self.icon = "icon.png"   #App icon
+    def build(self):
+        return root()
+
+
+if __name__ == '__main__':
+    MyApp().run()
