@@ -1,22 +1,30 @@
+#Copyright (C) 2023 L0Elements
+#This program is distributed under the terms of the GNU General Public License version 2
+#You should have received a copy of the GNU General Public License along
+#with this program; if not, write to the Free Software Foundation, Inc.,
+#51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
 <root>:
-    orientation: "vertical"
     BoxLayout:
-        size_hint: 1, .04
-        background_color: 1, 1, 1, 1
+        size_hint: 1, .2
+        orientation: 'vertical'
+        Label:
+            text: "Welcome!"
+            font_size: '40sp'
+            bold: True
+            underline: True
+            halign: "left"
+        Widget:
+            size_hint_y: .1
+
+<books>:
     BoxLayout:
-        size_hint: 1, .1
-        orientation: "horizontal"
-        Image:
-            source: ""
-            size_hint: .25, 1
+        spacing: 240
+        size_hint_y: .14
+        Label:
+            text: 'Your books'
         Button:
-            text: "Home"
-        Button:
-            text: "Passwords"
-        Button:
-            text: "Help"
-    Label:
-        text: "hello World!"
-        bold: True
-        font_size: '24sp'
-        color: 1, 0, 0, 1
+            text: "New book"
+    Widget:
+        size_hint_y: .10
