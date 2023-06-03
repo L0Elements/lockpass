@@ -27,6 +27,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
+from kivy.lang.builder import Builder
 
 
 class root(BoxLayout):
@@ -37,6 +38,9 @@ class root(BoxLayout):
 
 
 class books(BoxLayout):
+    def change_view(self, book):
+        pass
+
 
     def __init__(self):
         super().__init__()
@@ -54,7 +58,19 @@ class books(BoxLayout):
             second_layout.add_widget(Label(text=lockpass.bookinfo.Description(item), size_hint_y=.2, halign='left'))
 
             first_layout.add_widget(second_layout)
-            first_layout.add_widget(Button(text="Open Book", size_hint=(.2, 1)))
+
+            # btn = Button(text="Open Book", size_hint=(.2, 1))
+            # btn.bind(on_press='self.change_view(item)')
+            class New_Button(Button):
+                text = "Open Book"
+                size_hint = (.2, 1)
+                usedbook = item
+                def on_press(self):
+                    books.change_view(books, self.usedbook)
+
+            first_layout.add_widget(New_Button())
+            del New_Button
+            # bt.bind(on_press=self.change_view(item))
             bookindex.add_widget(first_layout)
         scroll.add_widget(bookindex)
         self.add_widget(scroll)
