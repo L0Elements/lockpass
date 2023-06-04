@@ -29,12 +29,7 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
 
-class root(BoxLayout):
-    def __init__(self):
-        super().__init__()
-        self.orientation = 'vertical'
-        main = books()
-        self.add_widget(main)
+
 
 
 class books(BoxLayout):
@@ -48,32 +43,33 @@ class books(BoxLayout):
         b_index = lockpass.booklist()
         if len(b_index) == 0:
             pass
-        bookindex = BoxLayout(orientation="vertical")
-        scroll = ScrollView(do_scroll_x=False)
-        for item in b_index:
-            first_layout = BoxLayout(orientation="horizontal", height='120sp')
-            second_layout = BoxLayout(orientation="vertical", size_hint=(.8, 1))
+        else:
+            bookindex = BoxLayout(orientation="vertical")
+            scroll = ScrollView(do_scroll_x=False)
+            for item in b_index:
+                first_layout = BoxLayout(orientation="horizontal", height='120sp')
+                second_layout = BoxLayout(orientation="vertical", size_hint=(.8, 1))
 
-            second_layout.add_widget(Label(text=item, font_size='24sp', size_hint_y=.8, halign='left'))
-            second_layout.add_widget(Label(text=lockpass.bookinfo.Description(item), size_hint_y=.2, halign='left'))
+                second_layout.add_widget(Label(text=item, font_size='24sp', size_hint_y=.8, halign='left'))
+                second_layout.add_widget(Label(text=lockpass.bookinfo.Description(item), size_hint_y=.2, halign='left'))
 
-            first_layout.add_widget(second_layout)
+                first_layout.add_widget(second_layout)
 
-            # btn = Button(text="Open Book", size_hint=(.2, 1))
-            # btn.bind(on_press='self.change_view(item)')
-            class New_Button(Button):
-                text = "Open Book"
-                size_hint = (.2, 1)
-                usedbook = item
-                def on_press(self):
-                    books.change_view(books, self.usedbook)
+                # btn = Button(text="Open Book", size_hint=(.2, 1))
+                # btn.bind(on_press='self.change_view(item)')
+                class New_Button(Button):
+                    text = "Open Book"
+                    size_hint = (.2, 1)
+                    usedbook = item
+                    def on_press(self):
+                        books.change_view(books, self.usedbook)
 
-            first_layout.add_widget(New_Button())
-            del New_Button
-            # bt.bind(on_press=self.change_view(item))
-            bookindex.add_widget(first_layout)
-        scroll.add_widget(bookindex)
-        self.add_widget(scroll)
+                first_layout.add_widget(New_Button())
+                del New_Button
+                # bt.bind(on_press=self.change_view(item))
+                bookindex.add_widget(first_layout)
+            scroll.add_widget(bookindex)
+            self.add_widget(scroll)
 
 
 class MyApp(App):
@@ -81,7 +77,7 @@ class MyApp(App):
 
     #    self.icon = "icon.png"   #App icon
     def build(self):
-        return root()
+        return books()
 
 
 if __name__ == '__main__':
