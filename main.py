@@ -29,15 +29,18 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
 
-# Program
 class root(BoxLayout):
     def __init__(self):
         super().__init__()
         self.orientation = 'vertical'
-        self.add_widget(books())
+        main = books()
+        self.add_widget(main)
 
 
-class books(BoxLayout):  # Book view
+class books(BoxLayout):
+    def change_view(self, book):
+        pass
+
 
     def __init__(self):
         super().__init__()
@@ -61,7 +64,9 @@ class books(BoxLayout):  # Book view
             class New_Button(Button):
                 text = "Open Book"
                 size_hint = (.2, 1)
-                used_book = item
+                usedbook = item
+                def on_press(self):
+                    books.change_view(books, self.usedbook)
 
             first_layout.add_widget(New_Button())
             del New_Button
@@ -71,7 +76,7 @@ class books(BoxLayout):  # Book view
         self.add_widget(scroll)
 
 
-class MyApp(App):  # App
+class MyApp(App):
     title = "Lockpass 0.0.1"
 
     #    self.icon = "icon.png"   #App icon
