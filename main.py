@@ -17,7 +17,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 """
 # local library
-import Lockpass
+from Lockpass import *
 # kivy
 import kivy
 
