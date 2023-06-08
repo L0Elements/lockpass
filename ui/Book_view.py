@@ -1,13 +1,34 @@
+"""
+Copyright (C) 2023 L0Elements
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+"""
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
-from Lockpass import *
+from ui.Password_view import PasswordView
+from Lockpass import lockpass
 
 
 class root_book_view(BoxLayout):
     def to_passwd_view(self, book):
         self.clear_widgets()
+        PasswordView.book = book
+        self.add_widget(PasswordView())
 
     def __init__(self):
         super().__init__()
